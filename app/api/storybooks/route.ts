@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { TB_STORYBOOK_storybook_shared } from '@prisma/client'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams
@@ -145,10 +147,12 @@ export async function GET(request: NextRequest) {
 
     // member_id와 member_idx 모두로 매핑
     const memberMapById = new Map(
-      members.map(m => [m.member_id || '', m]).filter(([id]) => id !== '')
+      members
+        .map(m => [m.member_id || '', m] as [string, typeof m])
+        .filter(([id]) => id !== '')
     )
     const memberMapByIdx = new Map(
-      members.map(m => [m.member_idx.toString(), m])
+      members.map(m => [m.member_idx.toString(), m] as [string, typeof m])
     )
 
     // 데이터 변환

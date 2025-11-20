@@ -48,11 +48,12 @@ export default function BoardPage() {
   }
 
   const boardGubun = getBoardGubun()
-  const boardGubunName = {
+  const boardGubunNameMap: Record<string, string> = {
     NO: '공지사항',
     FR: 'FAQ',
     BO: '일반게시판',
-  }[boardGubun || ''] || '게시판'
+  }
+  const boardGubunName = boardGubun ? boardGubunNameMap[boardGubun] || '게시판' : '게시판'
 
   // 검색 상태
   const [searchTitle, setSearchTitle] = useState('')

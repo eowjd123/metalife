@@ -14,10 +14,20 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // 클라이언트 IP 가져오기
-    const clientIp = request.headers.get('x-forwarded-for')?.split(',')[0] ||
-                     request.headers.get('x-real-ip') ||
-                     null
+    // 클라이언트 IP 가져오기 (최대 15자로 제한)
+    const getClientIp = () => {
+      const forwardedFor = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+      const realIp = request.headers.get('x-real-ip')?.trim()
+      const ip = forwardedFor || realIp || null
+      
+      if (!ip) return null
+      
+      // 최대 15자로 제한 (VarChar(15) 제약 조건)
+      // IPv4 주소는 최대 15자이므로, 더 긴 경우는 잘라냄
+      return ip.substring(0, 15)
+    }
+    
+    const clientIp = getClientIp()
 
     if (userType === 'admin') {
       // 관리자 로그인

@@ -1,0 +1,421 @@
+/* 접속현황 페이지 스타일 */
+.accessStatus {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: var(--spacing-xl);
+  color: var(--gray-900);
+  letter-spacing: -0.5px;
+}
+
+.filterSection {
+  background: white;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xl);
+  flex-wrap: wrap;
+  border: 1px solid var(--gray-200);
+}
+
+.periodGroup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.periodLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-800);
+  white-space: nowrap;
+}
+
+.periodButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.periodButton {
+  padding: 10px 20px;
+  background: var(--gray-50);
+  border: 1.5px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-700);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.periodButton:hover {
+  background: var(--gray-100);
+  border-color: var(--gray-400);
+  transform: translateY(-1px);
+}
+
+.periodButton.active {
+  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-500) 100%);
+  color: white;
+  border-color: var(--primary-600);
+  box-shadow: var(--shadow-sm);
+}
+
+.dateGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 300px;
+}
+
+.dateInputWrapper {
+  position: relative;
+  flex: 1;
+}
+
+.dateInput {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  color: var(--gray-900);
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.dateInput:hover {
+  border-color: var(--gray-400);
+}
+
+.dateInput:focus {
+  outline: none;
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 4px var(--primary-50);
+}
+
+.dateSeparator {
+  color: var(--gray-500);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.searchButton {
+  padding: 12px 28px;
+  background: linear-gradient(135deg, var(--success-600) 0%, var(--success-500) 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+}
+
+.searchButton:hover {
+  background: linear-gradient(135deg, var(--success-600) 0%, var(--success-700) 100%);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.searchButton:active {
+  transform: translateY(0);
+}
+
+.statsSummary {
+  background: white;
+  padding: var(--spacing-lg) var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  margin-bottom: var(--spacing-lg);
+  font-size: 14px;
+  color: var(--gray-600);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  border: 1px solid var(--gray-200);
+  border-left: 4px solid var(--primary-500);
+}
+
+.statsSummary strong {
+  color: var(--gray-900);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.3px;
+}
+
+.separator {
+  color: var(--gray-300);
+  font-weight: 300;
+}
+
+.chartContainer {
+  background: white;
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--gray-200);
+  position: relative;
+  overflow: hidden;
+}
+
+.chartContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-500) 0%, var(--primary-600) 100%);
+}
+
+.chartTitle {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--gray-900);
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 2px solid var(--gray-100);
+  letter-spacing: -0.3px;
+}
+
+.chart {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.chartYAxis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50px;
+  height: 300px;
+  padding-right: 12px;
+  position: relative;
+}
+
+.yAxisLabel {
+  font-size: 12px;
+  color: var(--gray-600);
+  text-align: right;
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+}
+
+.yAxisLabel::after {
+  content: '';
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 1px;
+  background: var(--gray-300);
+}
+
+.chartContent {
+  flex: 1;
+  position: relative;
+  height: 300px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: 
+    repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 59px,
+      var(--gray-100) 59px,
+      var(--gray-100) 60px
+    );
+  border-left: 2px solid var(--gray-300);
+  border-bottom: 2px solid var(--gray-300);
+  border-radius: var(--radius-sm);
+  padding: 0 8px 0 0;
+}
+
+.chartBars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 100%;
+  min-width: 100%;
+  padding: 0 4px 20px 4px;
+  position: relative;
+}
+
+.barWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  min-width: 24px;
+  position: relative;
+}
+
+.bar {
+  width: 100%;
+  min-width: 24px;
+  background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 50%, #2563eb 100%);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 8px;
+  box-shadow: 
+    0 2px 4px rgba(59, 130, 246, 0.2),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: barGrow 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  pointer-events: none;
+}
+
+.bar:hover {
+  background: linear-gradient(180deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
+  transform: translateY(-4px) scaleY(1.05);
+  transform-origin: bottom;
+  box-shadow: 
+    0 8px 16px rgba(59, 130, 246, 0.4),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.barValue {
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  text-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    0 0 4px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.bar:hover .barValue {
+  opacity: 1;
+}
+
+.barLabel {
+  font-size: 12px;
+  color: var(--gray-700);
+  margin-top: 8px;
+  font-weight: 700;
+  text-align: center;
+  min-height: 16px;
+}
+
+@keyframes barGrow {
+  from {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.chartXAxis {
+  display: flex;
+  gap: 6px;
+  margin-left: 66px;
+  padding-top: var(--spacing-md);
+  border-top: 2px solid var(--gray-300);
+  position: relative;
+}
+
+.xAxisLabel {
+  flex: 1;
+  font-size: 12px;
+  color: var(--gray-700);
+  text-align: center;
+  font-weight: 700;
+  min-width: 24px;
+  position: relative;
+}
+
+.xAxisLabel::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 8px;
+  background: var(--gray-300);
+}
+
+@media (max-width: 768px) {
+  .filterSection {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .periodGroup {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .periodButtons {
+    flex-wrap: wrap;
+  }
+
+  .dateGroup {
+    flex-direction: column;
+    min-width: auto;
+  }
+
+  .dateSeparator {
+    display: none;
+  }
+
+  .searchButton {
+    width: 100%;
+  }
+
+  .chartContent {
+    overflow-x: auto;
+  }
+
+  .chartBars {
+    min-width: max-content;
+  }
+
+  .barWrapper {
+    min-width: 30px;
+  }
+}
+

@@ -1,0 +1,217 @@
+.productsPage {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--gray-900);
+  letter-spacing: -0.5px;
+}
+
+.addButton {
+  padding: 12px 28px;
+  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-500) 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.addButton:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  background: linear-gradient(135deg, var(--primary-700) 0%, var(--primary-600) 100%);
+}
+
+.addButton:active {
+  transform: translateY(0);
+}
+
+.tableContainer {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  border: 1px solid var(--gray-200);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead {
+  background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+}
+
+.table th {
+  padding: 18px 20px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gray-700);
+  border-bottom: 2px solid var(--gray-200);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.table td {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 14px;
+  color: var(--gray-800);
+  vertical-align: middle;
+}
+
+.table tbody tr {
+  transition: all 0.15s ease;
+}
+
+.table tbody tr:hover {
+  background: var(--primary-50);
+  transform: scale(1.001);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.licenseKey {
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary-700);
+  background: var(--primary-50);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--primary-200);
+}
+
+.userName {
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: 2px;
+}
+
+.userId {
+  font-size: 12px;
+  color: var(--gray-500);
+}
+
+.userCount {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.currentUsers {
+  font-weight: 700;
+  color: var(--primary-600);
+}
+
+.separator {
+  color: var(--gray-400);
+}
+
+.maxUsers {
+  color: var(--gray-600);
+}
+
+.status {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.status.활성 {
+  background: var(--success-50);
+  color: var(--success-600);
+  border: 1px solid var(--success-200);
+}
+
+.status.만료 {
+  background: var(--error-50);
+  color: var(--error-600);
+  border: 1px solid var(--error-200);
+}
+
+.status.일시정지 {
+  background: var(--warning-50);
+  color: var(--warning-500);
+  border: 1px solid #fde68a;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.editButton,
+.deleteButton {
+  padding: 8px 16px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.editButton {
+  background: var(--primary-500);
+  color: white;
+}
+
+.editButton:hover {
+  background: var(--primary-600);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.deleteButton {
+  background: var(--error-500);
+  color: white;
+}
+
+.deleteButton:hover {
+  background: var(--error-600);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 768px) {
+  .tableContainer {
+    overflow-x: auto;
+  }
+
+  .table {
+    min-width: 800px;
+  }
+}
+

@@ -1,0 +1,555 @@
+.boardPage {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--gray-900);
+  letter-spacing: -0.5px;
+}
+
+.addButton {
+  padding: 12px 28px;
+  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-500) 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.addButton:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  background: linear-gradient(135deg, var(--primary-700) 0%, var(--primary-600) 100%);
+}
+
+/* 통계 카드 */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.statCard {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--gray-200);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  transition: all 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.statIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.statContent {
+  flex: 1;
+}
+
+.statContent h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-600);
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statNumber {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--gray-900);
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+/* 필터 바 */
+.filterBar {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-md);
+  margin-bottom: var(--spacing-lg);
+  border: 1px solid var(--gray-200);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 200px;
+  padding: 12px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+}
+
+.select {
+  padding: 12px 14px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  background: white;
+  font-size: 14px;
+}
+
+.searchButton {
+  padding: 12px 20px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--primary-500);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.searchButton:hover {
+  background: var(--primary-600);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* 테이블 */
+.tableContainer {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  margin-bottom: var(--spacing-xl);
+  border: 1px solid var(--gray-200);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead {
+  background: var(--gray-50);
+}
+
+.table th {
+  padding: 16px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gray-600);
+  text-align: left;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.table td {
+  padding: 16px 18px;
+  font-size: 14px;
+  color: var(--gray-800);
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.table tbody tr:hover {
+  background: var(--gray-50);
+}
+
+.titleCell {
+  font-weight: 600;
+  color: var(--gray-900);
+  max-width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.titleCell a {
+  color: var(--primary-600);
+  text-decoration: none;
+}
+
+.titleCell a:hover {
+  text-decoration: underline;
+}
+
+.contentsCell {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--gray-600);
+}
+
+.dateCell {
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  color: var(--gray-600);
+}
+
+.gubunBadge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+}
+
+.gubunBadge.notice {
+  background: var(--error-100);
+  color: var(--error-700);
+}
+
+.gubunBadge.faq {
+  background: var(--primary-100);
+  color: var(--primary-700);
+}
+
+.gubunBadge.general {
+  background: var(--gray-100);
+  color: var(--gray-700);
+}
+
+.tableActions {
+  display: flex;
+  gap: 8px;
+}
+
+.linkButton {
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--gray-300);
+  background: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--gray-700);
+  transition: all 0.2s ease;
+}
+
+.linkButton:hover {
+  background: var(--gray-50);
+  border-color: var(--gray-400);
+}
+
+.linkButton.danger {
+  color: var(--error-600);
+  border-color: var(--error-300);
+}
+
+.linkButton.danger:hover {
+  background: var(--error-50);
+  border-color: var(--error-400);
+}
+
+/* 오류 메시지 */
+.errorMessage {
+  padding: 16px 20px;
+  background: var(--error-50);
+  border: 1px solid var(--error-200);
+  border-left: 4px solid var(--error-500);
+  border-radius: var(--radius-md);
+  color: var(--error-700);
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+}
+
+/* 로딩 상태 */
+.loadingContainer {
+  padding: 60px 24px;
+  text-align: center;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--gray-200);
+  border-top-color: var(--primary-500);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingContainer p {
+  color: var(--gray-600);
+  font-size: 14px;
+}
+
+/* 빈 상태 */
+.emptyState {
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--gray-500);
+}
+
+.emptyState svg {
+  margin: 0 auto 16px;
+  color: var(--gray-400);
+}
+
+.emptyState h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: 8px;
+}
+
+.emptyState p {
+  color: var(--gray-500);
+  font-size: 14px;
+}
+
+/* 페이지네이션 */
+.paginationContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.paginationInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--gray-600);
+  font-size: 14px;
+}
+
+.pageSizeSelect {
+  padding: 8px 12px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  background: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.pagination {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.paginationButton {
+  padding: 8px 16px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  background: white;
+  color: var(--gray-700);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.paginationButton:hover:not(:disabled) {
+  background: var(--gray-50);
+  border-color: var(--gray-400);
+}
+
+.paginationButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--gray-100);
+}
+
+.paginationNumber {
+  min-width: 40px;
+}
+
+.paginationNumber.active,
+.paginationButton.active {
+  background: var(--primary-500);
+  color: white;
+  border-color: var(--primary-500);
+  font-weight: 600;
+}
+
+.paginationNumber.active:hover,
+.paginationButton.active:hover {
+  background: var(--primary-600);
+  border-color: var(--primary-600);
+}
+
+.paginationEllipsis {
+  padding: 8px 4px;
+  color: var(--gray-400);
+  font-size: 14px;
+}
+
+/* 상세 페이지 액션 버튼 */
+.detailActions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.detailButton {
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow-sm);
+  min-width: 100px;
+  justify-content: center;
+}
+
+.detailButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.detailButtonPrimary {
+  background: var(--primary-500);
+  color: white;
+}
+
+.detailButtonPrimary:hover:not(:disabled) {
+  background: var(--primary-600);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.detailButtonDanger {
+  background: var(--error-500);
+  color: white;
+}
+
+.detailButtonDanger:hover:not(:disabled) {
+  background: var(--error-600);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.detailButtonSecondary {
+  background: var(--gray-100);
+  color: var(--gray-700);
+  border: 1px solid var(--gray-300);
+}
+
+.detailButtonSecondary:hover:not(:disabled) {
+  background: var(--gray-200);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.detailButtonIcon {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2.5;
+}
+
+/* 상세 페이지 폼 */
+.detailForm {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-xl);
+  border: 1px solid var(--gray-200);
+}
+
+.formGroup {
+  margin-bottom: var(--spacing-lg);
+}
+
+.formLabel {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--gray-700);
+  font-size: 14px;
+}
+
+.formInput,
+.formTextarea,
+.formSelect {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.formTextarea {
+  min-height: 200px;
+  resize: vertical;
+}
+
+.formInput:focus,
+.formTextarea:focus,
+.formSelect:focus {
+  outline: none;
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 3px var(--primary-100);
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+}
+
+@media (max-width: 768px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+}
+

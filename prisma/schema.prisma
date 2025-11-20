@@ -1,0 +1,574 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_ADMIN {
+  admin_idx        Int                   @id @default(autoincrement())
+  admin_id         String?               @db.VarChar(50)
+  admin_name       String                @default("이름없음") @db.VarChar(50)
+  admin_nicname    String                @default("닉네임없음") @db.VarChar(50)
+  admin_email      String                @db.VarChar(100)
+  admin_password   String                @default("") @db.VarChar(255)
+  admin_phone      String?               @db.VarChar(20)
+  admin_gubun      TB_ADMIN_admin_gubun  @default(N)
+  admin_reg_ip     String?               @db.VarChar(15)
+  admin_reg_date   DateTime              @default(now()) @db.Timestamp(0)
+  admin_login_date DateTime?             @db.Timestamp(0)
+  admin_del_YN     TB_ADMIN_admin_del_YN @default(N)
+
+  @@index([admin_del_YN], map: "admin_del_YN")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_ADMIN_LOGIN_LOG {
+  admin_login_idx      Int      @id @default(autoincrement())
+  admin_idx            Int?
+  admin_login_domain   String?  @db.VarChar(255)
+  admin_login_reg_ip   String?  @db.VarChar(15)
+  admin_login_reg_date DateTime @default(now()) @db.Timestamp(0)
+
+  @@index([admin_idx], map: "admin_idx")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_ADMIN_WORK_LOG {
+  work_idx      Int      @id @default(autoincrement())
+  admin_idx     Int?
+  work_admin    String?  @db.VarChar(255)
+  work_reg_ip   String?  @db.VarChar(15)
+  work_reg_date DateTime @default(now()) @db.Timestamp(0)
+
+  @@index([admin_idx], map: "member_idx")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_BOARD {
+  board_idx      Int                   @id @default(autoincrement())
+  board_depth    Int                   @default(1)
+  board_sort     Int                   @default(1)
+  board_gubun    TB_BOARD_board_gubun  @default(NO)
+  board_title    String                @default("") @db.VarChar(255)
+  board_contents String?               @db.Text
+  board_image_1  String?               @db.VarChar(255)
+  board_image_2  String?               @db.VarChar(255)
+  board_reg_date DateTime              @default(now()) @db.Timestamp(0)
+  board_reg_ip   String?               @db.VarChar(15)
+  board_del_YN   TB_BOARD_board_del_YN @default(N)
+  member_idx     Int?
+
+  @@index([board_del_YN], map: "board_del_YN")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_BOARD_USER {
+  board_user_idx         Int                               @id @default(autoincrement())
+  board_user_name        String?                           @db.VarChar(100)
+  board_user_email       String?                           @db.VarChar(255)
+  board_user_title       String                            @default("") @db.VarChar(255)
+  board_user_contents    String?                           @db.Text
+  board_user_reply_YN    TB_BOARD_USER_board_user_reply_YN @default(N)
+  board_user_reg_date    DateTime                          @default(now()) @db.Timestamp(0)
+  board_user_del_YN      TB_BOARD_USER_board_user_del_YN   @default(N)
+  company_workplace_code String?                           @db.VarChar(5)
+  member_idx             Int?
+
+  @@index([board_user_del_YN], map: "board_user_del_YN")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_CMS_DTL {
+  cms_dtl_idx      Int                       @id @default(autoincrement())
+  MC00AA           String?                   @db.VarChar(20)
+  MC000Z           String?                   @db.VarChar(20)
+  MC000Y           String?                   @db.VarChar(20)
+  MC000X           String?                   @db.VarChar(20)
+  MC000W           String?                   @db.VarChar(20)
+  MC000V           String?                   @db.VarChar(20)
+  MC000U           String?                   @db.VarChar(20)
+  MC000T           String?                   @db.VarChar(20)
+  MC000S           String?                   @db.VarChar(20)
+  MC000R           String?                   @db.VarChar(20)
+  MC000Q           String?                   @db.VarChar(20)
+  MC000P           String?                   @db.VarChar(20)
+  MC000O           String?                   @db.VarChar(20)
+  MC000N           String?                   @db.VarChar(20)
+  MC000M           String?                   @db.VarChar(20)
+  MC000L           String?                   @db.VarChar(20)
+  MC000K           String?                   @db.VarChar(20)
+  MC000J           String?                   @db.VarChar(20)
+  MC000I           String?                   @db.VarChar(20)
+  MC000H           String?                   @db.VarChar(20)
+  MC000G           String?                   @db.VarChar(20)
+  MC000F           String?                   @db.VarChar(20)
+  MC000E           String?                   @db.VarChar(20)
+  MC000D           String?                   @db.VarChar(20)
+  MC000C           String?                   @db.VarChar(20)
+  MC000B           String?                   @db.VarChar(20)
+  MC000A           String?                   @db.VarChar(20)
+  cms_dtl_reg_ip   String?                   @db.VarChar(15)
+  cms_dtl_reg_date DateTime                  @default(now()) @db.Timestamp(0)
+  cms_dtl_del_YN   TB_CMS_DTL_cms_dtl_del_YN @default(N)
+  cms_idx          Int                       @default(1)
+
+  @@index([cms_dtl_del_YN], map: "cms_dtl_del_YN")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_CMS_MST {
+  cms_idx      Int                   @id @default(autoincrement())
+  cms_name     String                @default("이름없음") @db.VarChar(255)
+  cms_name_eng String                @default("No NAME") @db.VarChar(255)
+  cms_dtl_txt  String?               @db.LongText
+  cms_code     String?               @db.VarChar(20)
+  cms_tag      String?               @db.VarChar(255)
+  cms_url      String?               @db.VarChar(255)
+  cms_image_1  String?               @db.VarChar(255)
+  cms_image_2  String?               @db.VarChar(255)
+  cms_image_3  String?               @db.VarChar(255)
+  cms_movie_1  String?               @db.VarChar(255)
+  cms_reg_ip   String?               @db.VarChar(15)
+  cms_reg_date DateTime              @default(now()) @db.Timestamp(0)
+  cms_del_YN   TB_CMS_MST_cms_del_YN @default(N)
+  admin_idx    Int                   @default(1)
+
+  @@index([cms_del_YN], map: "cms_del_YN")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_CODE_MST {
+  code_idx      Int                     @id @default(autoincrement())
+  code_gcode    String?                 @db.VarChar(20)
+  code_scode    String?                 @db.VarChar(20)
+  code_name     String?                 @db.VarChar(100)
+  code_name_eng String?                 @db.VarChar(100)
+  code_txt      String?                 @db.VarChar(255)
+  code_tag      String?                 @db.VarChar(100)
+  code_type     TB_CODE_MST_code_type?
+  code_basic    TB_CODE_MST_code_basic? @default(N)
+  code_reg_ip   String?                 @db.VarChar(15)
+  code_reg_date DateTime                @default(now()) @db.Timestamp(0)
+  code_del_YN   TB_CODE_MST_code_del_YN @default(N)
+  admin_idx     Int                     @default(1)
+
+  @@index([code_gcode], map: "code_gcode")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_DOWNLOAD_LOG {
+  download_idx      Int                            @id @default(autoincrement())
+  download_work     String?                        @db.VarChar(255)
+  download_gubun    TB_DOWNLOAD_LOG_download_gubun @default(A)
+  download_reg_ip   String?                        @db.VarChar(15)
+  download_reg_date DateTime                       @default(now()) @db.Timestamp(0)
+  member_id         String?                        @db.VarChar(100)
+
+  @@index([member_id], map: "member_idx")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_GROUP {
+  group_idx            Int                   @id @default(autoincrement())
+  group_name           String                @default("이름없음") @db.VarChar(255)
+  group_phone          String?               @db.VarChar(20)
+  group_email          String?               @db.VarChar(100)
+  group_zipcode        String?               @db.VarChar(10)
+  group_address        String?               @db.VarChar(60)
+  group_address_detail String?               @db.VarChar(60)
+  group_type           TB_GROUP_group_type   @default(A)
+  group_reg_ip         String?               @db.VarChar(15)
+  group_reg_date       DateTime              @default(now()) @db.Timestamp(0)
+  group_del_YN         TB_GROUP_group_del_YN @default(N)
+  admin_idx            Int                   @default(1)
+
+  @@index([group_del_YN], map: "group_del_YN")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_LICENSE_CODE {
+  license_idx       Int                             @id @default(autoincrement())
+  license_type      TB_LICENSE_CODE_license_type    @default(school)
+  license_level     TB_LICENSE_CODE_license_level   @default(home)
+  license_period    Int                             @default(1)
+  license_limit     Int                             @default(1)
+  license_code      String?                         @db.VarChar(20)
+  license_name      String                          @default("이름없음") @db.VarChar(100)
+  license_lastdate  String                          @default("9999-12-31T00:00:00.000Z") @db.VarChar(30)
+  license_startdate String?                         @db.VarChar(30)
+  license_enddate   String?                         @db.VarChar(30)
+  license_regdate   String?                         @db.VarChar(30)
+  license_used_YN   TB_LICENSE_CODE_license_used_YN @default(N)
+  license_reg_ip    String?                         @db.VarChar(15)
+  license_reg_date  DateTime                        @default(now()) @db.Timestamp(0)
+  license_del_YN    TB_LICENSE_CODE_license_del_YN  @default(N)
+  admin_idx         Int                             @default(1)
+
+  @@index([license_del_YN], map: "license_del_YN")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_LICENSE_HST {
+  license_hst_idx      Int                               @id @default(autoincrement())
+  license_hst_reg_ip   String?                           @db.VarChar(15)
+  license_hst_reg_date DateTime                          @default(now()) @db.Timestamp(0)
+  license_hst_del_YN   TB_LICENSE_HST_license_hst_del_YN @default(N)
+  license_idx          Int                               @default(1)
+  member_idx           Int                               @default(1)
+
+  @@index([license_hst_del_YN], map: "license_hst_del_YN")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_LINK_DTL {
+  link_dtl_idx      Int      @id @default(autoincrement())
+  link_dtl_from     String?  @db.VarChar(100)
+  link_dtl_reg_ip   String?  @db.VarChar(15)
+  link_dtl_reg_date DateTime @default(now()) @db.Timestamp(0)
+  link_code         String   @default("0000") @db.VarChar(10)
+
+  @@index([link_code], map: "link_code")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_LINK_MST {
+  link_idx      Int                     @id @default(autoincrement())
+  link_name     String                  @default("이름없음") @db.VarChar(255)
+  link_domain   String                  @default("MAIN") @db.VarChar(100)
+  link_code     String                  @default("0000") @db.VarChar(10)
+  link_cnt      Int                     @default(1)
+  link_from_url String?                 @db.VarChar(255)
+  link_to_url   String?                 @db.VarChar(255)
+  link_reg_ip   String?                 @db.VarChar(15)
+  link_reg_date DateTime                @default(now()) @db.Timestamp(0)
+  link_del_YN   TB_LINK_MST_link_del_YN @default(N)
+  admin_idx     Int                     @default(1)
+
+  @@index([link_del_YN], map: "link_del_YN")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_MANUAL_DTL {
+  manual_dtl_idx      Int                             @id @default(autoincrement())
+  manual_dtl_name     String?                         @db.VarChar(255)
+  manual_dtl_file     String?                         @db.VarChar(255)
+  manual_dtl_reg_ip   String?                         @db.VarChar(15)
+  manual_dtl_reg_date DateTime                        @default(now()) @db.Timestamp(0)
+  manual_dtl_del_YN   TB_MANUAL_DTL_manual_dtl_del_YN @default(N)
+  manual_idx          Int                             @default(1)
+  admin_idx           Int                             @default(1)
+
+  @@index([manual_idx], map: "manual_idx")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_MANUAL_MST {
+  manual_idx      Int                         @id @default(autoincrement())
+  manual_code     TB_MANUAL_MST_manual_code   @default(SCHOOL)
+  manual_name     String                      @default("이름없음") @db.VarChar(255)
+  manual_cnt      Int                         @default(1)
+  manual_reg_ip   String?                     @db.VarChar(15)
+  manual_reg_date DateTime                    @default(now()) @db.Timestamp(0)
+  manual_del_YN   TB_MANUAL_MST_manual_del_YN @default(N)
+  admin_idx       Int                         @default(1)
+
+  @@index([manual_del_YN], map: "manual_del_YN")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_MEMBER {
+  member_idx        Int                         @id @default(autoincrement())
+  member_id         String?                     @db.VarChar(100)
+  member_name       String                      @default("이름없음") @db.VarChar(50)
+  member_nicname    String                      @default("닉네임없음") @db.VarChar(100)
+  member_password   String                      @default("") @db.VarChar(255)
+  member_email      String                      @default("") @db.VarChar(100)
+  member_phone      String?                     @db.VarChar(20)
+  member_gubun      TB_MEMBER_member_gubun      @default(T)
+  member_join_gubun TB_MEMBER_member_join_gubun @default(W)
+  member_reg_ip     String?                     @db.VarChar(15)
+  member_memo       String?                     @db.Text
+  member_reg_date   DateTime                    @default(now()) @db.Timestamp(0)
+  member_login_date DateTime?                   @db.Timestamp(0)
+  member_used_YN    TB_MEMBER_member_used_YN    @default(N)
+  member_del_YN     TB_MEMBER_member_del_YN     @default(N)
+  member_grade      Int                         @default(1)
+  member_login_cnt  Int                         @default(1)
+  group_idx         Int                         @default(1)
+
+  @@index([member_del_YN], map: "member_del_YN")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_MEMBER_CONNECT_CNT {
+  connect_cnt_idx           Int       @id @default(autoincrement())
+  connect_cnt               Int       @default(0)
+  connect_cnt_domain        String    @default("LOGIN") @db.VarChar(50)
+  connect_cnt_domain_detail String?   @db.VarChar(255)
+  connect_cnt_date          DateTime? @db.Date
+
+  @@index([connect_cnt_domain], map: "connect_cnt_domain")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_MEMBER_LOGIN_LOG {
+  member_login_idx      Int      @id @default(autoincrement())
+  member_idx            Int?
+  member_login_domain   String?  @db.VarChar(255)
+  member_login_reg_ip   String?  @db.VarChar(15)
+  member_login_reg_date DateTime @default(now()) @db.Timestamp(0)
+
+  @@index([member_idx], map: "member_idx")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_MEMBER_LST {
+  mem_idx          Int                      @id @default(autoincrement())
+  license_YN       TB_MEMBER_LST_license_YN @default(N)
+  email            String                   @default("") @db.VarChar(100)
+  pwd              String                   @default("No NAME") @db.VarChar(255)
+  nickname         String                   @default("No NAME") @db.VarChar(255)
+  memberType       Int                      @default(1)
+  receiveMarketing String                   @default("TRUE") @db.VarChar(10)
+  isVrwareEmail    String                   @default("TRUE") @db.VarChar(10)
+  group            String                   @default("GP") @db.VarChar(20)
+  firstQuestion    Int                      @default(1)
+  firstAnswer      String                   @default("GP") @db.VarChar(50)
+  secondQuestion   Int                      @default(1)
+  secondAnswer     String                   @default("GP") @db.VarChar(50)
+  licenseType      String                   @default("school") @db.VarChar(10)
+  licenseGrade     String                   @default("class") @db.VarChar(10)
+  expireDate       String?                  @db.VarChar(10)
+  mem_reg_date     DateTime                 @default(now()) @db.Timestamp(0)
+  mem_del_YN       TB_MEMBER_LST_mem_del_YN @default(N)
+  admin_idx        Int                      @default(1)
+
+  @@index([mem_del_YN], map: "mem_del_YN")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_MEMBER_RULE {
+  member_rule_idx   Int     @id @default(autoincrement())
+  member_rule_name  String? @db.VarChar(100)
+  member_rule_gubun String? @db.VarChar(255)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_MEMBER_TRACE_LOG {
+  member_trace_idx      Int      @id @default(autoincrement())
+  member_trace_domain   String?  @db.VarChar(255)
+  member_trace_reg_date DateTime @default(now()) @db.Timestamp(0)
+  member_idx            Int?
+
+  @@index([member_idx], map: "member_idx")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_NFC_LOGIN {
+  nfc_idx      Int      @id @default(autoincrement())
+  nfc_key      String?  @db.VarChar(255)
+  nfc_userid   String?  @db.VarChar(100)
+  nfc_username String?  @db.VarChar(100)
+  nfc_reg_ip   String?  @db.VarChar(15)
+  nfc_reg_date DateTime @default(now()) @db.Timestamp(0)
+
+  @@index([nfc_key], map: "nfc_key")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TB_STORYBOOK {
+  storybook_idx           Int                           @id @default(autoincrement())
+  storybook_id            String?                       @db.VarChar(50)
+  storybook_title         String?                       @db.VarChar(255)
+  storybook_image_url     String?                       @db.LongText
+  storybook_thumbnail_url String?                       @db.LongText
+  storybook_data_url      String?                       @db.LongText
+  storybook_voice_url     String?                       @db.LongText
+  storybook_shared        TB_STORYBOOK_storybook_shared @default(N)
+  storybook_reg_date      DateTime                      @default(now()) @db.Timestamp(0)
+  storybook_modify_date   DateTime                      @db.Timestamp(0)
+  member_idx              Int?
+  member_id               String?                       @db.VarChar(100)
+  storybook_del_YN        TB_STORYBOOK_storybook_del_YN @default(N)
+
+  @@index([storybook_id], map: "storybook_id")
+}
+
+enum TB_LICENSE_CODE_license_type {
+  metaware
+  school
+  storybuilder
+}
+
+enum TB_MANUAL_MST_manual_code {
+  SCHOOL
+  STORY
+  METAWARE
+}
+
+enum TB_MEMBER_LST_license_YN {
+  Y
+  N
+}
+
+enum TB_DOWNLOAD_LOG_download_gubun {
+  A
+  B
+  C
+  D
+}
+
+enum TB_LICENSE_CODE_license_level {
+  home
+  class
+  storybuilder
+  tutor
+}
+
+enum TB_BOARD_board_gubun {
+  BO
+  NO
+  FR
+}
+
+enum TB_LICENSE_HST_license_hst_del_YN {
+  Y
+  N
+}
+
+enum TB_BOARD_USER_board_user_reply_YN {
+  Y
+  N
+}
+
+enum TB_MANUAL_DTL_manual_dtl_del_YN {
+  Y
+  N
+}
+
+enum TB_MANUAL_MST_manual_del_YN {
+  Y
+  N
+}
+
+enum TB_ADMIN_admin_gubun {
+  S
+  A
+  N
+  G
+}
+
+enum TB_BOARD_USER_board_user_del_YN {
+  Y
+  N
+}
+
+enum TB_CODE_MST_code_type {
+  RA
+  CK
+  IP
+}
+
+enum TB_GROUP_group_type {
+  A
+  B
+  C
+  D
+  E
+  F
+  G
+  H
+}
+
+enum TB_MEMBER_member_gubun {
+  S
+  T
+  N
+  I
+}
+
+enum TB_STORYBOOK_storybook_shared {
+  Y
+  N
+}
+
+enum TB_CODE_MST_code_basic {
+  Y
+  N
+}
+
+enum TB_MEMBER_member_join_gubun {
+  W
+  G
+  A
+  E
+}
+
+enum TB_LINK_MST_link_del_YN {
+  Y
+  N
+}
+
+enum TB_BOARD_board_del_YN {
+  Y
+  N
+}
+
+enum TB_GROUP_group_del_YN {
+  Y
+  N
+}
+
+enum TB_ADMIN_admin_del_YN {
+  Y
+  N
+}
+
+enum TB_CODE_MST_code_del_YN {
+  Y
+  N
+}
+
+enum TB_LICENSE_CODE_license_used_YN {
+  Y
+  N
+}
+
+enum TB_STORYBOOK_storybook_del_YN {
+  Y
+  N
+}
+
+enum TB_CMS_MST_cms_del_YN {
+  Y
+  N
+}
+
+enum TB_MEMBER_member_used_YN {
+  Y
+  N
+}
+
+enum TB_LICENSE_CODE_license_del_YN {
+  Y
+  N
+}
+
+enum TB_MEMBER_member_del_YN {
+  Y
+  N
+}
+
+enum TB_MEMBER_LST_mem_del_YN {
+  Y
+  N
+}
+
+enum TB_CMS_DTL_cms_dtl_del_YN {
+  Y
+  N
+}

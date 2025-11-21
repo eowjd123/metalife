@@ -1,0 +1,33 @@
+name: Deploy Metalife Server
+
+on:
+  push:
+    branches: [ main ] 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            set -e
+            echo ">>> 프로젝트 디렉토리 이동"
+            cd /home/ubuntu/metalife
+            echo ">>> 최신 코드 가져오기"
+            git fetch --all
+            git checkout main
+            git reset --hard origin/main
+            echo ">>> 패키지 설치"
+            npm install
+            echo ">>> PM2 재시작"
+            pm2 restart metalife --update-env
+            echo ">>> 배포 완료"
